@@ -1,0 +1,13 @@
+{
+ "frameW": 97,
+ "frameH": 120,
+ "cols": 6,
+ "frames": 32,
+ "sourceFrames": 30,
+ "idleFrame": 0,
+ "anchorX": 34,
+ "anchorY": 120,
+ "pxPerFrame": 2.0,
+ "stepLen": 40.5,
+ "catX": 66
+}
