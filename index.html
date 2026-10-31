@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>The Mountain Trail — Hà's Portfolio</title>
+  <!-- Font pixel retro cho HUD + modal (fallback monospace nếu offline) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- ==========================================================
+       HUD OVERLAY (HTML thuần, nằm đè lên canvas game)
+       Phase 1: chỉ hiển thị độ cao (elevation). Phase 2 có thể
+       thêm minimap, tên trạm, nút tương tác... vào đây.
+  =========================================================== -->
+  <div id="hud">
+    <div id="elevation-panel">
+      <div class="elev-label">ĐỘ CAO</div>
+      <div class="elev-value">
+        <span id="elevation-number">0</span><span class="elev-unit">m</span>
+      </div>
+      <!-- Thanh tiến trình leo núi -->
+      <div class="elev-bar">
+        <div id="elevation-fill"></div>
+      </div>
+      <div id="zone-name" class="zone-name">Base Camp</div>
+    </div>
+  </div>
+
+  <!-- Gợi ý điều khiển, tự ẩn sau vài giây -->
+  <div id="hint">Dùng <b>WASD</b> / <b>mũi tên</b> để đi &nbsp;•&nbsp; đến gần vật thể bấm <b>Space</b></div>
+
+  <!-- ==========================================================
+       POPUP MODAL (retro game UI) — ẩn mặc định.
+       Nội dung Title/Text/Images được JS bơm vào theo vật thể.
+  =========================================================== -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-box">
+      <button id="modal-close" class="modal-close" aria-label="Đóng">✕</button>
+      <h2 id="modal-title"></h2>
+
+      <!-- Image slider (chỉ hiện khi data có mảng images) -->
+      <div id="modal-slider" class="slider hidden">
+        <button class="slider-btn" id="slider-prev" aria-label="Ảnh trước">‹</button>
+        <div class="slider-frame">
+          <img id="slider-img" alt="portfolio image" />
+        </div>
+        <button class="slider-btn" id="slider-next" aria-label="Ảnh sau">›</button>
+        <div id="slider-count" class="slider-count"></div>
+      </div>
+
+      <p id="modal-text"></p>
+
+      <!-- Nút đặc biệt cho Summit (thay slider) -->
+      <button id="modal-finish" class="finish-btn hidden">Finish the hike</button>
+
+      <div class="modal-foot">[ Esc ] để đóng</div>
+    </div>
+  </div>
+
+  <!-- Màn hình đen kết thúc hành trình -->
+  <div id="blackout" class="blackout hidden">
+    <p>Thanks for walking this trail with me.<br />See you on the next one &lt;3</p>
+  </div>
+
+  <!-- Kaplay (Kaboom.js kế nhiệm) qua CDN — không cần build -->
+  <script src="https://unpkg.com/kaplay@3001.0.19/dist/kaplay.js"></script>
+  <!-- Code game của mình -->
+  <script src="main.js"></script>
+</body>
+</html>
