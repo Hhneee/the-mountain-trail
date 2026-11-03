@@ -260,6 +260,7 @@ const UI = (() => {
     if (h > bh) { h = bh; w = h * ratio; }
     el.card.style.width = `${w}px`;
     el.card.style.height = `${h}px`;
+    el.card.style.setProperty('--card-w', `${w}px`);
   }
   addEventListener('resize', sizeJournalCard);
 
@@ -281,7 +282,10 @@ const UI = (() => {
     onClose = handlers.onClose || null;
     onFinish = handlers.onFinish || null;
 
-    const journal = id === 'summit';
+    // Trang Summit từng dùng nền tranh riêng (summit_panel.webp) nhưng asset đó
+    // không tồn tại trong bản deploy → letter trôi lơ lửng + nút finish vô hình.
+    // Render như một tấm thẻ giấy chuẩn cho đồng bộ, dễ đọc, nút finish hiện rõ.
+    const journal = false;
     el.card.classList.toggle('journal', journal);
     if (!journal) { el.card.style.width = ''; el.card.style.height = ''; }
 
