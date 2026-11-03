@@ -348,20 +348,29 @@ canvas {
   padding: 0;
 }
 .journal-paper {
-  /* Khối letter căn giữa trong thẻ giấy chuẩn — tự co theo nội dung, không
-     tràn, không cần nền tranh riêng. */
-  max-width: 640px;
+  /* height stops well above the compass art painted at the bottom-left of
+     the panel background, so the last line of text never runs behind it.
+     The paper art itself sits a few degrees off the panel's own horizontal
+     (its top edge rises to the right), so the whole block is rotated to
+     lie flat on the page instead of parallel to the wood frame. */
+  position: absolute;
+  left: 11%; top: 21%; width: 25.4%; height: 49%;
   display: flex; flex-direction: column;
-  gap: 16px; padding: 4px 8px;
-  text-align: left;
+  gap: .5em; padding: .3em 1.1em; box-sizing: border-box;
+  overflow: hidden;
+  transform: rotate(-4.5deg);
+  transform-origin: center;
+  /* Chữ co theo bề rộng thẻ (--card-w do JS đặt) nên luôn vừa vùng giấy ở mọi
+     kích thước màn hình — không còn tràn ra scrollbar. */
+  font-size: clamp(11px, calc(var(--card-w, 1040px) * 0.0188), 20px);
 }
 .journal-paper h3 {
   font-family: var(--hand);
-  font-size: 40px;
+  font-size: 1.5em;
   font-style: normal;
   font-weight: 700;
   line-height: 1;
-  margin: 0 0 4px;
+  margin: 0 0 .22em;
   color: var(--ink);
 }
 .journal-paper h3 .heading-text {
@@ -379,13 +388,13 @@ canvas {
   transform: rotate(-1deg);
   transform-origin: left center;
 }
-.journal-paper h3 .sparkle { color: var(--ink-soft); font-size: 28px; }
+.journal-paper h3 .sparkle { color: var(--ink-soft); font-size: 1.12em; }
 .journal-paper p {
   font-family: var(--hand);
-  font-size: 23px;
-  line-height: 1.4;
+  font-size: 1em;
+  line-height: 1.22;
   margin: 0;
-  padding-bottom: 14px;
+  padding-bottom: .5em;
   font-style: normal;
   color: var(--ink);
   border-bottom: 1px dashed rgba(74, 49, 25, .4);

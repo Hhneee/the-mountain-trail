@@ -282,10 +282,7 @@ const UI = (() => {
     onClose = handlers.onClose || null;
     onFinish = handlers.onFinish || null;
 
-    // Trang Summit từng dùng nền tranh riêng (summit_panel.webp) nhưng asset đó
-    // không tồn tại trong bản deploy → letter trôi lơ lửng + nút finish vô hình.
-    // Render như một tấm thẻ giấy chuẩn cho đồng bộ, dễ đọc, nút finish hiện rõ.
-    const journal = false;
+    const journal = id === 'summit';
     el.card.classList.toggle('journal', journal);
     if (!journal) { el.card.style.width = ''; el.card.style.height = ''; }
 
